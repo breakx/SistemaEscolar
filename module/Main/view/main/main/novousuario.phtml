@@ -1,0 +1,100 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            Novo Usuário
+        </div>
+    </div>
+    <?php
+    // objeto form contato
+    $formUsuarios = $this->formUsuarios;
+    // preparar elementos do formulário
+    $formUsuarios->prepare();
+    // configurar url formulário
+    $formUsuarios->setAttribute('action', $this->url('main', array('action' => 'adicionarusuario')));
+    ?>
+
+    <?php // renderiza html <form> com atributos configurados no objeto ?>
+    <?php echo $this->form()->openTag($formUsuarios) ?>
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="inputMatricula" class="col-lg-2 col-md-2 control-label">Matrícula*:</label>
+            <div class="col-lg-10 col-md-10">
+                <?php
+                // renderiza html input
+                echo $this->formInput($formUsuarios->get('matricula'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formUsuarios->get('matricula'));
+                ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputSenha" class="col-lg-2 col-md-2 control-label">Senha*:</label>
+            <div class="col-lg-4 col-md-4">
+                <?php
+                // renderiza html input
+                echo $this->formRadio($formUsuarios->get('senha'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formUsuarios->get('ano'));
+                ?>
+            </div>
+
+            <label for="inputRepetirSenha" class="col-lg-2 col-md-2 control-label">Repetir Senha*:</label>
+            <div class="col-lg-4 col-md-4">
+                <?php
+                // renderiza html input
+                echo $this->formRadio($formUsuarios->get('repetir_senha'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formUsuarios->get('repetir_senha'));
+                ?>
+            </div>
+        </div>
+
+
+        <!--<div class="form-group">
+            <label for="inputCaptcha" class="col-lg-2 col-md-2 control-label">Verificação*:</label>
+            <div class="col-lg-9  col-md-9" id="captcha">
+                <?php
+        // renderiza captcha
+        /*echo $this->formCaptcha(formDadosPessoais->get('captcha'));
+
+        // renderiza elemento de erro
+        echo $this->formElementErrors()
+            ->setMessageOpenFormat('<small class="text-danger">')
+            ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+            ->setMessageCloseString('</small>')
+            ->render(formDadosPessoais->get('captcha'));*/
+        ?>
+            </div>
+        </div>-->
+    </div>
+    <div class="panel-footer">
+        <?php
+        // renderiza html input hidden para id
+        echo $this->formHidden($formUsuarios->get('id_usuario'));
+        // renderiza html input hidden csrf
+        //echo $this->formElement($formUsuarios->get('security'));
+        ?>
+
+        <button type="submit" class="btn btn-primary">Salvar Dados</button>
+        <a href="<?php echo $this->url('main'); ?>" class="btn btn-default">Voltar</a>
+    </div>
+
+    <?php // renderiza html </form> ?>
+    <?php echo $this->form()->closeTag() ?>
+</div>

@@ -317,10 +317,128 @@ class MainForm extends Form
                 ]);
                 break;
             case 'series':
-                //
+                // elemento do tipo hidden
+                $this->add([
+                    'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'
+                    'name' => 'id_serie',
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'nome_serie',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputNomeSerie',
+                        'placeholder'   => 'Digite o nome da serie.',
+                    ],
+                ]);
+
+                // elemento do tipo select
+                /*$this->add([
+                    'type' => 'Select',
+                    'name' => 'nome_serie',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'selectSituacao',
+                    ],
+                    'options' => [
+                        'label' => 'Situacao',
+                        'empty_option' => 'Selecione uma opção',
+                        'value_options' => [
+                            '1' => '1º ano',
+                            '2' => '2º ano',
+                        ],
+                    ]
+                ]);*/
+
+                $this->add([
+                    'type' => 'Radio',
+                    'name' => 'subtipo',
+                    'options' => [
+                        'label' => 'Informe o subtipo da serie.',
+                        'value_options' => [
+                            ['value' => '1',
+                                'label' => 'A',
+                                'selected' => false,
+                                'disabled' => false,
+                            ],
+                            ['value' => '2',
+                                'label' => 'B',
+                                'selected' => false,
+                                'disabled' => false,
+                            ],
+                            ['value' => '3',
+                                'label' => 'C',
+                                'selected' => false,
+                                'disabled' => false,
+                            ],
+                            ['value' => '4',
+                                'label' => 'D',
+                                'selected' => false,
+                                'disabled' => false,
+                            ],
+                        ],
+                    ],
+                ]);
                 break;
             case 'materias':
-                //
+                // elemento do tipo hidden
+                $this->add([
+                    'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'
+                    'name' => 'id_materia',
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'nome_materia',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputNomeMateria',
+                        'placeholder'   => 'Digite o nome da matéria.',
+                    ],
+                ]);
+
+                // elemento do tipo select
+                $this->add([
+                    'type' => 'Select',
+                    'name' => 'tipo_materia',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'selectTipoMateria',
+                    ],
+                    'options' => [
+                        'label' => 'Situacao',
+                        'empty_option' => 'Selecione uma opção',
+                        'value_options' => [
+                            '1' => 'Anual',
+                            '2' => 'Semestral',
+                            '3' => 'Trimestral',
+                        ],
+                    ]
+                ]);
+
+                $this->add([
+                    'type' => 'Date', # ou 'type' => 'Text'
+                    'name' => 'ano',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputAno',
+                        'placeholder'   => 'Digite o ano.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'nome_professor',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputNomeProfessor',
+                        'placeholder'   => 'Digite o nome do professor.',
+                    ],
+                ]);
                 break;
             case 'usuarios':
                 //

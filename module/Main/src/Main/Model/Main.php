@@ -45,6 +45,49 @@ class Main
     public $turno;
     public $tipo;
 
+    //Series
+    public $id_serie;
+    public $nome_serie;
+    public $subtipo;
+
+    //Materias
+    public $id_materia;
+    public $nome_materia;
+    public $ano;
+    public $tipo_materia;
+    public $nome_professor;
+
+    //Usuarios
+    public $id_usuario;
+    public $matricula;
+    public $senha;
+
+    //Tipo Usuarios
+    public $id_tipo_usuario;
+    public $nome_tipo_usuario;
+
+    //Funcionarios
+    public $id_funcionario;
+    public $nome_funcionario;
+    public $atuacao;
+    public $formacao;
+
+    //Alunos
+    public $id_aluno;
+    public $nome_aluno;
+    public $curso_aluno;
+    public $serie_aluno;
+    public $materia_aluno;
+    public $professor_aluno;
+    public $nota1;
+    public $nota2;
+    public $nota3;
+    public $nota4;
+    public $trabalho1;
+    public $trabalho2;
+    public $trabalho3;
+    public $trabalho4;
+
     protected $inputFilter;
 
     public function exchangeArray($data)
@@ -80,6 +123,49 @@ class Main
         $this->nome_curso = (!empty($data['nome_curso'])) ? $data['nome_curso'] : null;
         $this->turno = (!empty($data['turno'])) ? $data['turno'] : null;
         $this->tipo = (!empty($data['tipo'])) ? $data['tipo'] : null;
+
+        //serie
+        $this->id_serie = (!empty($data['id_serie'])) ? $data['id_serie'] : null;
+        $this->nome_serie = (!empty($data['nome_serie'])) ? $data['nome_serie'] : null;
+        $this->subtipo = (!empty($data['subtipo'])) ? $data['subtipo'] : null;
+
+        //materias
+        $this->id_materia = (!empty($data['id_materia'])) ? $data['id_materia'] : null;
+        $this->nome_materia = (!empty($data['nome_materia'])) ? $data['nome_materia'] : null;
+        $this->ano = (!empty($data['ano'])) ? $data['ano'] : null;
+        $this->tipo_materia = (!empty($data['tipo_materia'])) ? $data['tipo_materia'] : null;
+        $this->nome_professor = (!empty($data['nome_professor'])) ? $data['nome_professor'] : null;
+
+        //usuarios
+        $this->id_usuario = (!empty($data['id_usuario'])) ? $data['id_usuario'] : null;
+        $this->matricula = (!empty($data['matricula'])) ? $data['matricula'] : null;
+        $this->senha = (!empty($data['senha'])) ? $data['senha'] : null;
+
+        //tipo usuarios
+        $this->id_tipo_usuario = (!empty($data['id_tipo_usuario'])) ? $data['id_tipo_usuario'] : null;
+        $this->nome_tipo_usuario = (!empty($data['nome_tipo_usuario'])) ? $data['nome_tipo_usuario'] : null;
+
+        //funcionario
+        $this->id_funcionario = (!empty($data['id_funcionario'])) ? $data['id_funcionario'] : null;
+        $this->nome_funcionario = (!empty($data['nome_funcionario'])) ? $data['nome_funcionario'] : null;
+        $this->atuacao = (!empty($data['atuacao'])) ? $data['atuacao'] : null;
+        $this->formacao = (!empty($data['formacao'])) ? $data['formacao'] : null;
+
+        //alunos
+        $this->id_aluno = (!empty($data['id_aluno'])) ? $data['id_aluno'] : null;
+        $this->nome_aluno = (!empty($data['nome_aluno'])) ? $data['nome_aluno'] : null;
+        $this->curso_aluno = (!empty($data['curso_aluno'])) ? $data['curso_aluno'] : null;
+        $this->serie_aluno = (!empty($data['serie_aluno'])) ? $data['serie_aluno'] : null;
+        $this->materia_aluno = (!empty($data['materia_aluno'])) ? $data['materia_aluno'] : null;
+        $this->nome_professor = (!empty($data['nome_professor'])) ? $data['nome_professor'] : null;
+        $this->nota1 = (!empty($data['nota1'])) ? $data['nota1'] : null;
+        $this->nota2 = (!empty($data['nota2'])) ? $data['nota2'] : null;
+        $this->nota3 = (!empty($data['nota3'])) ? $data['nota3'] : null;
+        $this->nota4 = (!empty($data['nota4'])) ? $data['nota4'] : null;
+        $this->trabalho1 = (!empty($data['trabalho1'])) ? $data['trabalho1'] : null;
+        $this->trabalho2 = (!empty($data['trabalho2'])) ? $data['trabalho2'] : null;
+        $this->trabalho3 = (!empty($data['trabalho3'])) ? $data['trabalho3'] : null;
+        $this->trabalho4 = (!empty($data['trabalho4'])) ? $data['trabalho4'] : null;
     }
 
     /**
@@ -862,7 +948,7 @@ class Main
 
                     //input filter para tipo da materia(anual,semestal,trimestal,bimestral)
                     $inputFilter->add(array(
-                        'name'     => 'tipo_mat',
+                        'name'     => 'tipo_materia',
                         'required' => true,
                         'filters'  => array(
                             array('name' => 'Int'),
@@ -955,11 +1041,365 @@ class Main
                         ),
                     ));
                     break;
+                case 'tipo_usuarios':
+                    //input filter para campo id
+                    $inputFilter->add(array(
+                        'name'=>'id_tipo_usuarios',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'Int'),#transforma string para inteiro
+                        ),
+                    ));
+
+                    //input filter para campo de nome
+                    $inputFilter->add(array(
+                        'name'=>'nome_tipo_usuarios',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+                    break;
                 case 'funcionarios':
-                    //
+                    //input filter para campo id
+                    $inputFilter->add(array(
+                        'name'=>'id_funcioanrio',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'Int'),#transforma string para inteiro
+                        ),
+                    ));
+
+                    //input filter para campo de nome
+                    $inputFilter->add(array(
+                        'name'=>'nome_funcionario',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+
+                    //input filter para campo de atuacao
+                    $inputFilter->add(array(
+                        'name'=>'atuacao',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+
+                    //input filter para campo de atuacao
+                    $inputFilter->add(array(
+                        'name'=>'formacao',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
                     break;
                 case 'alunos':
-                    //
+                    //input filter para campo id
+                    $inputFilter->add(array(
+                        'name'=>'id_aluno',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'Int'),#transforma string para inteiro
+                        ),
+                    ));
+
+                    //input filter para campo de nome
+                    $inputFilter->add(array(
+                        'name'=>'nome_aluno',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+
+                    //input filter para campo matricula
+                    $inputFilter->add(array(
+                        'name'=>'matricula_aluno',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+
+                    //input filter para campo curso
+                    $inputFilter->add(array(
+                        'name'=>'curso_aluno',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+
+                    //input filter para campo serie
+                    $inputFilter->add(array(
+                        'name'=>'serie_aluno',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+
+                    //input filter para campo materia
+                    $inputFilter->add(array(
+                        'name'=>'materia_aluno',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+
+                    //input filter para campo curso
+                    $inputFilter->add(array(
+                        'name'=>'professor_aluno',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
                     break;
             }
 

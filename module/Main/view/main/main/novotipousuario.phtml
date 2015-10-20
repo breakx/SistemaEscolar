@@ -1,0 +1,68 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            Novo Usuário
+        </div>
+    </div>
+    <?php
+    // objeto form contato
+    $formTipoUsuarios = $this->formTipoUsuarios;
+    // preparar elementos do formulário
+    $formTipoUsuarios->prepare();
+    // configurar url formulário
+    $formTipoUsuarios->setAttribute('action', $this->url('main', array('action' => 'adicionartipousuario')));
+    ?>
+
+    <?php // renderiza html <form> com atributos configurados no objeto ?>
+    <?php echo $this->form()->openTag($formTipoUsuarios) ?>
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="inputNomeTipoUsuario" class="col-lg-2 col-md-2 control-label">Tipo de Usuario*:</label>
+            <div class="col-lg-10 col-md-10">
+                <?php
+                // renderiza html input
+                echo $this->formInput($formTipoUsuarios->get('nome_tipo_usuario'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formTipoUsuarios->get('nome_tipo_usuario'));
+                ?>
+            </div>
+        </div>
+
+
+        <!--<div class="form-group">
+            <label for="inputCaptcha" class="col-lg-2 col-md-2 control-label">Verificação*:</label>
+            <div class="col-lg-9  col-md-9" id="captcha">
+                <?php
+        // renderiza captcha
+        /*echo $this->formCaptcha(formDadosPessoais->get('captcha'));
+
+        // renderiza elemento de erro
+        echo $this->formElementErrors()
+            ->setMessageOpenFormat('<small class="text-danger">')
+            ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+            ->setMessageCloseString('</small>')
+            ->render(formDadosPessoais->get('captcha'));*/
+        ?>
+            </div>
+        </div>-->
+    </div>
+    <div class="panel-footer">
+        <?php
+        // renderiza html input hidden para id
+        echo $this->formHidden($formTipoUsuarios->get('id_tipo_usuario'));
+        // renderiza html input hidden csrf
+        //echo $this->formElement($formTipoUsuarios->get('security'));
+        ?>
+
+        <button type="submit" class="btn btn-primary">Salvar Dados</button>
+        <a href="<?php echo $this->url('main'); ?>" class="btn btn-default">Voltar</a>
+    </div>
+
+    <?php // renderiza html </form> ?>
+    <?php echo $this->form()->closeTag() ?>
+</div>

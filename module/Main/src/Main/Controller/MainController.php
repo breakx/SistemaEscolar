@@ -70,7 +70,7 @@ class MainController extends AbstractActionController
     /**
      * @return array
      */
-    public function novopessoaAction()
+    public function novapessoaAction()
     {
         $mainTable='dados_pessoais';
         return ['formDadosPessoais' => new MainForm($mainTable)];
@@ -168,13 +168,13 @@ class MainController extends AbstractActionController
     /**
      * @return array
      */
-    public function novoserieAction()
+    public function novaserieAction()
     {
         $mainTable='series';
         return ['formSeries' => new MainForm($mainTable)];
     }
 
-    public function cadastrarserieAction()
+    public function adicionarserieAction()
     {
         $mainTable='series';
         // obtém a requisição
@@ -216,13 +216,13 @@ class MainController extends AbstractActionController
     /**
      * @return array
      */
-    public function novomateriaAction()
+    public function novamateriaAction()
     {
         $mainTable='materias';
         return ['formMaterias' => new MainForm($mainTable)];
     }
 
-    public function cadastrarmateriaAction()
+    public function adicionarmateriaAction()
     {
         $mainTable='materias';
         // obtém a requisição
@@ -270,7 +270,7 @@ class MainController extends AbstractActionController
         return ['formUsuarios' => new MainForm($mainTable)];
     }
 
-    public function cadastrarusuarioAction()
+    public function adicionarusuarioAction()
     {
         $mainTable='usuarios';
         // obtém a requisição
@@ -318,7 +318,7 @@ class MainController extends AbstractActionController
         return ['formFuncionarios' => new MainForm($mainTable)];
     }
 
-    public function cadastrarfuncionarioAction()
+    public function adicionarfuncionarioAction()
     {
         $mainTable='funcionarios';
         // obtém a requisição
@@ -366,7 +366,7 @@ class MainController extends AbstractActionController
         return ['formAlunos' => new MainForm($mainTable)];
     }
 
-    public function cadastraralunoAction()
+    public function adicionaralunoAction()
     {
         $mainTable='alunos';
         // obtém a requisição
@@ -401,6 +401,54 @@ class MainController extends AbstractActionController
                 return (new ViewModel())
                     ->setVariable('formAlunos', $form)
                     ->setTemplate('main/main/novoaluno');
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function novotipousuarioAction()
+    {
+        $mainTable='tipo_usuario';
+        return ['formTipoUsuarios' => new MainForm($mainTable)];
+    }
+
+    public function adicionartipousuarioAction()
+    {
+        $mainTable='tipo_usuario';
+        // obtém a requisição
+        $request = $this->getRequest();
+
+        // verifica se a requisição é do tipo post
+        if ($request->isPost()) {
+            // instancia formulário
+            $form = new MainForm($mainTable);
+            // instancia model curso com regras de filtros e validações
+            $modelMain = new Main();
+            // passa para o objeto formulário as regras de viltros e validações
+            // contidas na entity usuario
+            $form->setInputFilter($modelMain->getInputFilter($mainTable));
+            // passa para o objeto formulário os dados vindos da submissão
+            $form->setData($request->getPost());
+
+            // verifica se o formulário segue a validação proposta
+            if ($form->isValid()) {
+                // aqui vai a lógica para adicionar os dados à tabela no banco
+                // 1 - popular model com valores do formulário
+                $modelMain->exchangeArray($form->getData());
+                // 2 - persistir dados do model para banco de dados
+                $this->getMainTable($mainTable)->save($modelMain, $mainTable);
+
+                // redirecionar para action index no controller aluno
+                return $this->redirect()->toRoute('main');
+            } else { // em caso da validação não seguir o que foi definido
+
+                // renderiza para action novo com o objeto form populado,
+                // com isso os erros serão tratados pelo helpers view
+                return (new ViewModel())
+                    ->setVariable('formTipoUsuarios', $form)
+                    ->setTemplate('main/main/novotipousuario');
             }
         }
     }
