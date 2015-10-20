@@ -18,4 +18,13 @@ class IndexController extends AbstractActionController
     {
         return new ViewModel();
     }
+
+    /**
+     * action login
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function loginAction()
+    {
+        return new ViewModel();
+    }
 }

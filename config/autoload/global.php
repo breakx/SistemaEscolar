@@ -11,6 +11,17 @@
  * file.
  */
 
-return array(
-    // ...
-);
+return [
+    'db' => [
+        'driver'            => 'Pdo',
+        'dsn'               => 'mysql:dbname=escola;host=localhost',
+        'driver_options'    => [
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "UTF8"'
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            'AdapterDb'   => 'Zend\Db\Adapter\AdapterServiceFactory', // new Zend\Db\Adapter\AdapterServiceFactory
+        ],
+    ],
+];

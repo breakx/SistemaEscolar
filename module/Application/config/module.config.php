@@ -10,50 +10,61 @@
 namespace Application;
 
 return array(
+    # definir e gerenciar controllers
+    'controllers' => array(
+        'invokables' => array(
+            'IndexController' => 'Application\Controller\IndexController',
+        ),
+    ),
+
+    # definir e gerenciar rotas
     'router' => array(
         'routes' => array(
+            # literal para action index home
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
+                'type'      => 'Literal',
+                'options'   => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
+                        'controller' => 'IndexController',
                         'action'     => 'index',
                     ),
                 ),
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/application',
+
+            # literal para action login
+            'login' => array(
+                'type'      => 'Literal',
+                'options'   => array(
+                    'route'    => '/login',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
+                        'controller' => 'IndexController',
+                        'action'     => 'login',
                     ),
                 ),
             ),
+
+            # segment para controller contatos
+            /*'contatos' => array(
+                'type'      => 'Segment',
+                'options'   => array(
+                    'route'    => '/contatos[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'ContatosController',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),*/
+
+            #literal/segment para links
         ),
     ),
+
+    # definir e gerenciar servicos
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -73,11 +84,8 @@ return array(
             ),
         ),
     ),
-    'controllers' => array(
-        'invokables' => array(
-            'Application\Controller\Index' => Controller\IndexController::class
-        ),
-    ),
+
+    # definir e gerenciar layouts, erros, exceptions, doctype base
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
