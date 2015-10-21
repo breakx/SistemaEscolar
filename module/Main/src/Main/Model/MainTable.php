@@ -127,7 +127,7 @@ class MainTable extends AbstractActionController
                     'nome_materia'                  => $main->nome_materia,
                     'ano'                  => $main->ano,
                     'tipo_materia'                  => $main->tipo_materia,
-                    'professor'                  => $main->professor,
+                    'nome_professor'                  => $main->nome_professor,
                 ];
                 $msg="Materia adicionada com sucesso!";
                 break;
@@ -147,8 +147,15 @@ class MainTable extends AbstractActionController
             case 'funcionarios':
                 $data = [
                     'nome_funcionario'                  => $main->nome_funcionario,
-                    'atuacao'                  => $main->atuacao,
                     'formacao'                  => $main->formacao,
+                    'cargo_funcionario'                  => $main->cargo_funcionario,
+                    'especialidade'                  => $main->especialidade,
+                ];
+                $msg="Funciaonario adicionado com sucesso!";
+                break;
+            case 'cargo_funcionarios':
+                $data = [
+                    'nome_cargo_funcionario'                  => $main->nome_funcionario,
                 ];
                 $msg="Funciaonario adicionado com sucesso!";
                 break;

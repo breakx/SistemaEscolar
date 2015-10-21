@@ -18,7 +18,7 @@
     <div class="panel-body">
         <div class="form-group">
             <label for="inputNomeFuncionario" class="col-lg-2 col-md-2 control-label">Nome do Funcionario*:</label>
-            <div class="col-lg-10 col-md-10">
+            <div class="col-lg-9 col-md-9">
                 <?php
                 // renderiza html input
                 echo $this->formInput($formFuncionarios->get('nome_funcionario'));
@@ -34,26 +34,11 @@
         </div>
 
         <div class="form-group">
-            <label for="inputAtuacao" class="col-lg-2 col-md-2 control-label">Atuação*:</label>
-            <div class="col-lg-4 col-md-4">
+            <label for="inputFormacao" class="col-lg-2 col-md-2 control-label">Formacao*:</label>
+            <div class="col-lg-5 col-md-5">
                 <?php
                 // renderiza html input
-                echo $this->formRadio($formFuncionarios->get('subtipo'));
-
-                // renderiza elemento de erro
-                echo $this->formElementErrors()
-                    ->setMessageOpenFormat('<small class="text-danger">')
-                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
-                    ->setMessageCloseString('</small>')
-                    ->render($formFuncionarios->get('subtipo'));
-                ?>
-            </div>
-
-            <label for="inputFormacao" class="col-lg-2 col-md-2 control-label">Formação*:</label>
-            <div class="col-lg-4 col-md-4">
-                <?php
-                // renderiza html input
-                echo $this->formRadio($formFuncionarios->get('formacao'));
+                echo $this->formInput($formFuncionarios->get('formacao'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()
@@ -61,6 +46,38 @@
                     ->setMessageSeparatorString('</small><br/><small class="text-danger">')
                     ->setMessageCloseString('</small>')
                     ->render($formFuncionarios->get('formacao'));
+                ?>
+            </div>
+
+            <label for="inputCargoFuncionario" class="col-lg-1 col-md-1 control-label">Cargo*:</label>
+            <div class="col-lg-3 col-md-3">
+                <?php
+                // renderiza html input
+                echo $this->formSelect($formFuncionarios->get('cargo_funcionario'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formFuncionarios->get('cargo_funcionario'));
+                ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEspecialidade" class="col-lg-2 col-md-2 control-label">Especialidade(s)*:</label>
+            <div class="col-lg-9 col-md-9">
+                <?php
+                // renderiza html input
+                echo $this->formTextarea($formFuncionarios->get('especialidade'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formFuncionarios->get('especialidade'));
                 ?>
             </div>
         </div>

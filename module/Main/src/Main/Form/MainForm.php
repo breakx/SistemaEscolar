@@ -218,12 +218,12 @@ class MainForm extends Form
                     'options' => [
                         'label' => 'Informe seu sexo.',
                         'value_options' => [
-                            ['value' => '1',
+                            ['value' => 'Masculino',
                                 'label' => 'Masculino',
                                 'selected' => false,
                                 'disabled' => false,
                             ],
-                            ['value' => '2',
+                            ['value' => 'Feminino',
                                 'label' => 'Feminino',
                                 'selected' => false,
                                 'disabled' => false,
@@ -238,12 +238,12 @@ class MainForm extends Form
                     'options' => [
                         'label' => 'Informe sua situação.',
                         'value_options' => [
-                            ['value' => '1',
+                            ['value' => 'Ativo',
                                 'label' => 'Ativo',
                                 'selected' => true,
                                 'disabled' => false,
                             ],
-                            ['value' => '2',
+                            ['value' => 'Inativo',
                                 'label' => 'Inativo',
                                 'selected' => false,
                                 'disabled' => false,
@@ -277,17 +277,17 @@ class MainForm extends Form
                     'options' => [
                         'label' => 'Informe o turno do curso.',
                         'value_options' => [
-                            ['value' => '1',
+                            ['value' => 'Manha',
                                 'label' => 'Manha',
                                 'selected' => false,
                                 'disabled' => false,
                             ],
-                            ['value' => '2',
+                            ['value' => 'Tarde',
                                 'label' => 'Tarde',
                                 'selected' => false,
                                 'disabled' => false,
                             ],
-                            ['value' => '3',
+                            ['value' => 'Noite',
                                 'label' => 'Noite',
                                 'selected' => false,
                                 'disabled' => false,
@@ -302,12 +302,12 @@ class MainForm extends Form
                     'options' => [
                         'label' => 'Informe o tipo de curso.',
                         'value_options' => [
-                            ['value' => '1',
+                            ['value' => 'Interno',
                                 'label' => 'Interno',
                                 'selected' => true,
                                 'disabled' => false,
                             ],
-                            ['value' => '2',
+                            ['value' => 'Comunidade',
                                 'label' => 'Comunidade',
                                 'selected' => false,
                                 'disabled' => false,
@@ -358,22 +358,22 @@ class MainForm extends Form
                     'options' => [
                         'label' => 'Informe o subtipo da serie.',
                         'value_options' => [
-                            ['value' => '1',
+                            ['value' => 'A',
                                 'label' => 'A',
                                 'selected' => false,
                                 'disabled' => false,
                             ],
-                            ['value' => '2',
+                            ['value' => 'B',
                                 'label' => 'B',
                                 'selected' => false,
                                 'disabled' => false,
                             ],
-                            ['value' => '3',
+                            ['value' => 'C',
                                 'label' => 'C',
                                 'selected' => false,
                                 'disabled' => false,
                             ],
-                            ['value' => '4',
+                            ['value' => 'D',
                                 'label' => 'D',
                                 'selected' => false,
                                 'disabled' => false,
@@ -412,9 +412,9 @@ class MainForm extends Form
                         'label' => 'Situacao',
                         'empty_option' => 'Selecione uma opção',
                         'value_options' => [
-                            '1' => 'Anual',
-                            '2' => 'Semestral',
-                            '3' => 'Trimestral',
+                            'Anual' => 'Anual',
+                            'Semestral' => 'Semestral',
+                            'Trimestral' => 'Trimestral',
                         ],
                     ]
                 ]);
@@ -441,13 +441,194 @@ class MainForm extends Form
                 ]);
                 break;
             case 'usuarios':
-                //
+                // elemento do tipo hidden
+                $this->add([
+                    'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'
+                    'name' => 'id_usuario',
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'matricula',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputMatricula',
+                        'placeholder'   => 'Gerado automaticamente.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Password', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'senha',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputSenha',
+                        'placeholder'   => 'Digite sua senha.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Password', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'repetir_senha',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputRepetirSenha',
+                        'placeholder'   => 'Repita a senha.',
+                    ],
+                ]);
                 break;
             case 'funcionarios':
-            //
+            //// elemento do tipo hidden
+                $this->add([
+                    'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'
+                    'name' => 'id_funcionario',
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'nome_funcionario',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputNomeFuncionario',
+                        'placeholder'   => 'Digite o nome do funcionario.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'formacao',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputFormacao',
+                        'placeholder'   => 'Digite a sua formação.',
+                    ],
+                ]);
+
+                // elemento do tipo select
+                $this->add([
+                    'type' => 'Select',
+                    'name' => 'cargo_funcionario',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'selectCargoFuncioanrio',
+                    ],
+                    'options' => [
+                        'label' => 'Selecione o Cargo',
+                        'empty_option' => 'Selecione uma opção',
+                        'value_options' => [
+                            '1' => 'Cargo1',
+                            '2' => 'Cargo2',
+                            '3' => 'Cargo3',
+                        ],
+                    ]
+                ]);
+
+                // elemento do tipo textarea
+                $this->add([
+                    'type' => 'Textarea', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'especialidade',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputEspecialidade',
+                        'placeholder' => 'Descreva a(s) especialidade(s)',
+                    ],
+                ]);
+                break;
+            case 'cargos_funcionarios':
+                //// elemento do tipo hidden
+                $this->add([
+                    'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'
+                    'name' => 'id_cargo_funcionario',
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'nome_cargo_funcionario',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputNomeCargoFuncionario',
+                        'placeholder'   => 'Digite o nome do cargo do funcionario.',
+                    ],
+                ]);
                 break;
             case 'alunos':
-                //
+                // elemento do tipo hidden
+                $this->add([
+                    'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'
+                    'name' => 'id_aluno',
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'nome_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputNomeAluno',
+                        'placeholder'   => 'Digite o nome do aluno.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'matricula_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputMatriculaAluno',
+                        'placeholder'   => 'Digite a matricula do aluno.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'curso_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputCursoAluno',
+                        'placeholder'   => 'Digite a curso do aluno.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'serie_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputSerieAluno',
+                        'placeholder'   => 'Digite a serie do aluno.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'materia_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputMateriaAluno',
+                        'placeholder'   => 'Digite a materia do aluno.',
+                    ],
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'professor_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputProfessorAluno',
+                        'placeholder'   => 'Digite a professor do aluno.',
+                    ],
+                ]);
                 break;
         }
 

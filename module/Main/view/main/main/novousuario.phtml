@@ -21,7 +21,7 @@
             <div class="col-lg-10 col-md-10">
                 <?php
                 // renderiza html input
-                echo $this->formInput($formUsuarios->get('matricula'));
+                echo $this->formText($formUsuarios->get('matricula'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()
@@ -38,14 +38,14 @@
             <div class="col-lg-4 col-md-4">
                 <?php
                 // renderiza html input
-                echo $this->formRadio($formUsuarios->get('senha'));
+                echo $this->formPassword($formUsuarios->get('senha'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()
                     ->setMessageOpenFormat('<small class="text-danger">')
                     ->setMessageSeparatorString('</small><br/><small class="text-danger">')
                     ->setMessageCloseString('</small>')
-                    ->render($formUsuarios->get('ano'));
+                    ->render($formUsuarios->get('senha'));
                 ?>
             </div>
 
@@ -53,7 +53,7 @@
             <div class="col-lg-4 col-md-4">
                 <?php
                 // renderiza html input
-                echo $this->formRadio($formUsuarios->get('repetir_senha'));
+                echo $this->formPassword($formUsuarios->get('repetir_senha'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()

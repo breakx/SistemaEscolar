@@ -56,6 +56,83 @@ class Module
                 'ModelCursos' => function ($sm) {
                     return new MainTable($sm->get('CursosTableGateway'));
                 },
+                'SeriesTableGateway' => function ($sm) {
+                    $adapter = $sm->get('AdapterDb');
+
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Main());
+
+                    return new TableGateway('series', $adapter, NULL, $resultSetPrototype);
+                },
+                'ModelSeries' => function ($sm) {
+                    return new MainTable($sm->get('SeriesTableGateway'));
+                },
+                'MateriasTableGateway' => function ($sm) {
+                    $adapter = $sm->get('AdapterDb');
+
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Main());
+
+                    return new TableGateway('materias', $adapter, NULL, $resultSetPrototype);
+                },
+                'ModelMaterias' => function ($sm) {
+                    return new MainTable($sm->get('MateriasTableGateway'));
+                },
+                'AlunosTableGateway' => function ($sm) {
+                    $adapter = $sm->get('AdapterDb');
+
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Main());
+
+                    return new TableGateway('alunos', $adapter, NULL, $resultSetPrototype);
+                },
+                'ModelAlunos' => function ($sm) {
+                    return new MainTable($sm->get('AlunosTableGateway'));
+                },
+                'FuncionariosTableGateway' => function ($sm) {
+                    $adapter = $sm->get('AdapterDb');
+
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Main());
+
+                    return new TableGateway('funcionarios', $adapter, NULL, $resultSetPrototype);
+                },
+                'ModelFuncionarios' => function ($sm) {
+                    return new MainTable($sm->get('FuncionariosTableGateway'));
+                },
+                'CargosFuncionariosTableGateway' => function ($sm) {
+                    $adapter = $sm->get('AdapterDb');
+
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Main());
+
+                    return new TableGateway('cargos_funcionarios', $adapter, NULL, $resultSetPrototype);
+                },
+                'ModelCargoFuncionarios' => function ($sm) {
+                    return new MainTable($sm->get('CargoFuncionariosTableGateway'));
+                },
+                'UsuariosTableGateway' => function ($sm) {
+                    $adapter = $sm->get('AdapterDb');
+
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Main());
+
+                    return new TableGateway('usuarios', $adapter, NULL, $resultSetPrototype);
+                },
+                'ModelUsuarios' => function ($sm) {
+                    return new MainTable($sm->get('UsuariosTableGateway'));
+                },
+                'TipoUsuariosTableGateway' => function ($sm) {
+                    $adapter = $sm->get('AdapterDb');
+
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Main());
+
+                    return new TableGateway('tipo_usuarios', $adapter, NULL, $resultSetPrototype);
+                },
+                'ModelTipoUsuarios' => function ($sm) {
+                    return new MainTable($sm->get('TipoUsuariosTableGateway'));
+                },
             ]
         ];
     }

@@ -61,6 +61,7 @@ class Main
     public $id_usuario;
     public $matricula;
     public $senha;
+    public $repetir_senha;
 
     //Tipo Usuarios
     public $id_tipo_usuario;
@@ -71,6 +72,10 @@ class Main
     public $nome_funcionario;
     public $atuacao;
     public $formacao;
+
+    //Cargos Funcionarios
+    public $id_cargo_funcionario;
+    public $nome_cargo_funcionario;
 
     //Alunos
     public $id_aluno;
@@ -140,6 +145,7 @@ class Main
         $this->id_usuario = (!empty($data['id_usuario'])) ? $data['id_usuario'] : null;
         $this->matricula = (!empty($data['matricula'])) ? $data['matricula'] : null;
         $this->senha = (!empty($data['senha'])) ? $data['senha'] : null;
+        $this->repetir_senha = (!empty($data['repetir_senha'])) ? $data['repetir_senha'] : null;
 
         //tipo usuarios
         $this->id_tipo_usuario = (!empty($data['id_tipo_usuario'])) ? $data['id_tipo_usuario'] : null;
@@ -150,6 +156,10 @@ class Main
         $this->nome_funcionario = (!empty($data['nome_funcionario'])) ? $data['nome_funcionario'] : null;
         $this->atuacao = (!empty($data['atuacao'])) ? $data['atuacao'] : null;
         $this->formacao = (!empty($data['formacao'])) ? $data['formacao'] : null;
+
+        //cargo funcionario
+        $this->id_cargo_funcionario = (!empty($data['id_cargo_funcionario'])) ? $data['id_cargo_funcionario'] : null;
+        $this->nome_cargo_funcionario = (!empty($data['nome_cargo_funcionario'])) ? $data['nome_cargo_funcionario'] : null;
 
         //alunos
         $this->id_aluno = (!empty($data['id_aluno'])) ? $data['id_aluno'] : null;
@@ -834,9 +844,9 @@ class Main
                     $inputFilter->add(array(
                         'name'     => 'subtipo',
                         'required' => true,
-                        'filters'  => array(
+                        /*'filters'  => array(
                             array('name' => 'Int'),
-                        ),
+                        ),*/
                         'validators' => array(
                             array(
                                 'name'    => 'NotEmpty',
@@ -950,9 +960,9 @@ class Main
                     $inputFilter->add(array(
                         'name'     => 'tipo_materia',
                         'required' => true,
-                        'filters'  => array(
+                        /*'filters'  => array(
                             array('name' => 'Int'),
-                        ),
+                        ),*/
                         'validators' => array(
                             array(
                                 'name'    => 'NotEmpty',
@@ -1011,6 +1021,39 @@ class Main
                     //input filter para campo de nome professor
                     $inputFilter->add(array(
                         'name'=>'senha',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+
+                    //input filter para campo de nome professor
+                    $inputFilter->add(array(
+                        'name'=>'repetir_senha',
                         'required'=>true,
                         'filters'=>array(
                             array('name'=>'StripTags'),#remove xml e html da string
@@ -1163,6 +1206,49 @@ class Main
                     //input filter para campo de atuacao
                     $inputFilter->add(array(
                         'name'=>'formacao',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'StripTags'),#remove xml e html da string
+                            array('name'=>'StringTrim'),#remove espaços do inicio e do final da string
+                            //array('name'=>'StringToUpper'),#transforma string em maiusculo
+                        ),
+                        'validators'=>array(
+                            array(
+                                'name'=>'NotEmpty',
+                                'options'=>array(
+                                    'messages'=>array(
+                                        NotEmpty::IS_EMPTY=>'Campo obrigatório.'
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'name'=>'StringLength',
+                                'options'=>array(
+                                    'encoding'=>'UTF-8',
+                                    'min'=>3,
+                                    'max'=>100,
+                                    'messages'=>array(
+                                        StringLength::TOO_SHORT=>'Mínimo de caracteres aceitáveis %min%.',
+                                        StringLength::TOO_LONG=>'Máximo de caracteres aceitáveis %max%.',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ));
+                    break;
+                case 'cargos_funcionarios':
+                    //input filter para campo id
+                    $inputFilter->add(array(
+                        'name'=>'id_cargo_funcioanrio',
+                        'required'=>true,
+                        'filters'=>array(
+                            array('name'=>'Int'),#transforma string para inteiro
+                        ),
+                    ));
+
+                    //input filter para campo de nome
+                    $inputFilter->add(array(
+                        'name'=>'nome_cargo_funcionario',
                         'required'=>true,
                         'filters'=>array(
                             array('name'=>'StripTags'),#remove xml e html da string
