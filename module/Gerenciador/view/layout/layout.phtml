@@ -1,0 +1,115 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: CristianoGD
+ * Date: 26/09/2015
+ * Time: 21:06
+ */
+
+echo $this->doctype(); ?>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+
+    <!-- Title Head -->
+    <?php
+    $NAME_APPLICATION = 'Sistema Escolar';
+    echo $this
+        ->headTitle($NAME_APPLICATION)
+        ->setSeparator(' - ')
+        ->setAutoEscape(false)
+    ;
+    ?>
+
+    <!-- Meta Head -->
+    <?php
+    echo $this
+        ->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ;
+    ?>
+
+    <!-- Styles -->
+    <?php
+    echo $this
+        ->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+        ->prependStylesheet($this->basePath() . '/css/style.css')
+        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+    ;
+    ?>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <?php
+            $url_home   = $this->url('dadospessoais');
+            $url_sobre  = $this->url('sobre');
+            $url_menu  = $this->url('relatorios');
+            ?>
+            <li <?php echo $this->menuAtivo($url_home); ?>>
+                <a href="<?php echo $url_home; ?>">Início</a>
+            </li>
+            <li <?php echo $this->menuAtivo($url_sobre); ?>>
+                <a href="<?php echo $url_sobre; ?>">Sobre</a>
+            </li>
+            <li <?php echo $this->menuAtivo($url_menu); ?>>
+                <a href="<?php echo $url_menu; ?>">Relatorio</a>
+            </li>
+        </ul>
+        <h3 class="text-muted"><?php echo $NAME_APPLICATION; ?></h3>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="container">
+            <div class="jumbotron">
+                <h1><?php echo sprintf($this->translate('Bem Vindo ao Sistema Escolar CrGD-Beta-0.01'), '<span class="zf-green">', '</span>') ?></h1>
+                <p><?php echo sprintf($this->translate('O Sistema esta sendo desenvolvido a partir do %sZF2 Skeleton Application%s. A atual versão do Zend Framework é %s.'), '<a href="#pagina_principal">', '</a>', \Zend\Version\Version::VERSION) ?></p>
+            </div>
+                <div class="col-sm-16 affix-sidebar">
+
+                    <div class="page-header">
+                        <h3><span class="glyphicon glyphicon-th-list"></span> Navigation</h3>
+                    </div>
+                    <?php echo $this->message(); ?>
+
+                    <div class="row marketing">
+                        <?php echo $this->content; ?>
+                    </div>
+
+                    <div class="footer">
+                        <p class="muted credit pull-left">Company <a href="">&copy; <?php echo date('Y') ?></a><?php echo $this->translate(' All rights reserved.') ?></p>
+                        <p class="muted credit pull-right">Desenvolvido por <a href="">Cristiano GD</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<?php
+echo $this
+    ->headScript()
+    ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+    ->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+    ->prependFile($this->basePath() . '/js/scripts.js')
+    ->prependFile($this->basePath() . '/js/select.js')
+    ->prependFile($this->basePath() . '/js/bootstrap-typeahead.min.js')
+    ->prependFile($this->basePath() . '/js/jquery.maskedinput.min.js')
+    ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+    ->prependFile($this->basePath() . '/js/jquery.min.js')
+    ->prependFile($this->basePath() . '/js/jquery-2.1.4.js')
+    ->prependFile($this->basePath() . '/js/jquery-1.11.3.js')
+;
+
+echo $this->inlineScript();
+?>
+</body>
+</html>

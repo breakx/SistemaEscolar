@@ -1,5 +1,5 @@
 /**
- * Created by Cristiano GD on 18/10/2015.
+ * Created by CristianoGD on 27/09/2015.
  */
 /**
  * efeito alert
@@ -11,5 +11,29 @@ $(function () {
     // verificar se o elemente esta presente na pagina
     if (corpo_alert.length)
     // gerar efeito para o elemento encontrado na pagina
-        corpo_alert.fadeOut().fadeIn().fadeOut().fadeIn().fadeOut();
+        corpo_alert.fadeOut().fadeIn().fadeOut().fadeIn();
+});
+
+/**
+ * mask input
+ */
+$(function (){
+    // mascara para telefone: (xx)xxxx-xxxxx
+    $("input#inputTelefonePrincipal, input#inputTelefoneSecundario").mask("(99)9999-9999?9");
+
+    // mascara para captcha com 12 caracteres apenas alfabéticos: xxxxxxxxxxxx
+    $("input#inputCaptcha").mask("aaa");
+});
+
+/**
+ * plugin typeahead
+ */
+$(function (){
+    $('input.typeahead').typeahead({
+        ajax: {
+            url: '/dadospessoais/search',    // url do serviço AJAX
+            triggerLength: 2,           // mínimo de caracteres
+            displayField: 'nome_pessoa',       // campo do JSON utilizado de retorno
+        }
+    });
 });

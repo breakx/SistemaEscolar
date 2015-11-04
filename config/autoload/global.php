@@ -11,17 +11,20 @@
  * file.
  */
 
-return [
-    'db' => [
+return array(
+    'db' => array(
         'driver'            => 'Pdo',
         'dsn'               => 'mysql:dbname=escola;host=localhost',
-        'driver_options'    => [
+        'driver_options'    => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "UTF8"'
-        ],
-    ],
-    'service_manager' => [
-        'factories' => [
+        ),
+    ),
+    'service_manager' => array(
+        'factories' => array(
             'AdapterDb'   => 'Zend\Db\Adapter\AdapterServiceFactory', // new Zend\Db\Adapter\AdapterServiceFactory
-        ],
-    ],
-];
+        ),
+        'abstract_factories' => array(
+            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+        ),
+    ),
+);

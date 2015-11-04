@@ -21,7 +21,7 @@ return array(
     'router' => array(
         'routes' => array(
             # literal para action index home
-            'home' => array(
+            'index' => array(
                 'type'      => 'Literal',
                 'options'   => array(
                     'route'    => '/',
@@ -43,22 +43,6 @@ return array(
                     ),
                 ),
             ),
-
-            # segment para controller contatos
-            /*'contatos' => array(
-                'type'      => 'Segment',
-                'options'   => array(
-                    'route'    => '/contatos[/:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id'     => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'ContatosController',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),*/
 
             #literal/segment para links
         ),
@@ -93,10 +77,10 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+            //'layout/layout'           => __DIR__ . '/../view/layout/layout1.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
-            'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            //'error/404'               => __DIR__ . '/../view/error/404.phtml',
+            //'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

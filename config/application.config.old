@@ -5,19 +5,12 @@
  *
  * @see https://github.com/zendframework/ZFTool
  */
-$env = getenv('APP_ENV') ? : 'development';
-
-$modules = array(
-    'Application',
-    //'ZendDeveloperTools',
-);
-/*if ($env == 'development') {
-    $modules[] = 'ZendDeveloperTools';
-    $modules[] = 'BjyProfiler';
-}*/
-
 return array(
-    'modules' => $modules,
+    'modules' => array(
+        'Contato',
+        'ZendDeveloperTools',
+        'BjyProfiler',
+    ),
     'module_listener_options' => array(
         'module_paths' => array(
             './module',
@@ -28,9 +21,9 @@ return array(
         ),
         'config_cache_enabled' => false,
         'config_cache_key' => 'app_config',
-        'module_map_cache_enabled' => ($env == 'development'),
+        'module_map_cache_enabled' => true,
         'module_map_cache_key' => 'module_map',
         'cache_dir' => './data/cache',
-        'check_dependencies' => ($env != 'development'),
+        'check_dependencies' => false,
     ),
 );

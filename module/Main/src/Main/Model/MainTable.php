@@ -138,7 +138,7 @@ class MainTable extends AbstractActionController
                 ];
                 $msg="Usuario adicionado com sucesso!";
                 break;
-            case 'tipo_usuarios':
+            case 'tipos_usuarios':
                 $data = [
                     'nome_tipo_usuario'                  => $main->nome_tipo_usuario,
                 ];
@@ -153,11 +153,11 @@ class MainTable extends AbstractActionController
                 ];
                 $msg="Funciaonario adicionado com sucesso!";
                 break;
-            case 'cargo_funcionarios':
+            case 'cargos_funcionarios':
                 $data = [
-                    'nome_cargo_funcionario'                  => $main->nome_funcionario,
+                    'nome_cargo_funcionario'                  => $main->nome_cargo_funcionario,
                 ];
-                $msg="Funciaonario adicionado com sucesso!";
+                $msg="Cargo Funciaonario adicionado com sucesso!";
                 break;
             case 'alunos':
                 $data = [

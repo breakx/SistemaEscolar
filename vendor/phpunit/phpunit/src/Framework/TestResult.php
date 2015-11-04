@@ -11,11 +11,7 @@
 /**
  * A TestResult collects the results of executing a test case.
  *
- * @author     Sebastian Bergmann <sebastian@phpunit.de>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @link       http://www.phpunit.de/
- * @since      Class available since Release 2.0.0
+ * @since Class available since Release 2.0.0
  */
 class PHPUnit_Framework_TestResult implements Countable
 {
@@ -344,14 +340,14 @@ class PHPUnit_Framework_TestResult implements Countable
 
         if (!$this->lastTestFailed && $test instanceof PHPUnit_Framework_TestCase) {
             $class  = get_class($test);
-            $key    =  $class . '::' . $test->getName();
+            $key    = $class . '::' . $test->getName();
 
             $this->passed[$key] = array(
-              'result' => $test->getResult(),
-              'size'   => PHPUnit_Util_Test::getSize(
-                  $class,
-                  $test->getName(false)
-              )
+                'result' => $test->getResult(),
+                'size'   => PHPUnit_Util_Test::getSize(
+                    $class,
+                    $test->getName(false)
+                )
             );
 
             $this->time += $time;
@@ -586,20 +582,17 @@ class PHPUnit_Framework_TestResult implements Countable
                 $this->beStrictAboutTestSize &&
                 extension_loaded('pcntl') && class_exists('PHP_Invoker')) {
                 switch ($test->getSize()) {
-                    case PHPUnit_Util_Test::SMALL: {
+                    case PHPUnit_Util_Test::SMALL:
                         $_timeout = $this->timeoutForSmallTests;
-                        }
-                    break;
+                        break;
 
-                    case PHPUnit_Util_Test::MEDIUM: {
+                    case PHPUnit_Util_Test::MEDIUM:
                         $_timeout = $this->timeoutForMediumTests;
-                        }
-                    break;
+                        break;
 
-                    case PHPUnit_Util_Test::LARGE: {
+                    case PHPUnit_Util_Test::LARGE:
                         $_timeout = $this->timeoutForLargeTests;
-                        }
-                    break;
+                        break;
                 }
 
                 $invoker = new PHP_Invoker;
@@ -618,6 +611,9 @@ class PHPUnit_Framework_TestResult implements Countable
                 $skipped = true;
             }
         } catch (PHPUnit_Framework_Exception $e) {
+            $error = true;
+        } catch (Throwable $e) {
+            $e     = new PHPUnit_Framework_ExceptionWrapper($e);
             $error = true;
         } catch (Exception $e) {
             $e     = new PHPUnit_Framework_ExceptionWrapper($e);
@@ -1063,10 +1059,10 @@ class PHPUnit_Framework_TestResult implements Countable
         while (!$done) {
             if ($asReflectionObjects) {
                 $class = new ReflectionClass(
-                    $classes[count($classes)-1]->getName()
+                    $classes[count($classes) - 1]->getName()
                 );
             } else {
-                $class = new ReflectionClass($classes[count($classes)-1]);
+                $class = new ReflectionClass($classes[count($classes) - 1]);
             }
 
             $parent = $class->getParentClass();

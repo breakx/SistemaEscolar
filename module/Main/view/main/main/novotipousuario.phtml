@@ -6,29 +6,29 @@
     </div>
     <?php
     // objeto form contato
-    $formTipoUsuarios = $this->formTipoUsuarios;
+    $formTiposUsuarios = $this->formTiposUsuarios;
     // preparar elementos do formulário
-    $formTipoUsuarios->prepare();
+    $formTiposUsuarios->prepare();
     // configurar url formulário
-    $formTipoUsuarios->setAttribute('action', $this->url('main', array('action' => 'adicionartipousuario')));
+    $formTiposUsuarios->setAttribute('action', $this->url('main', array('action' => 'adicionartipousuario')));
     ?>
 
     <?php // renderiza html <form> com atributos configurados no objeto ?>
-    <?php echo $this->form()->openTag($formTipoUsuarios) ?>
+    <?php echo $this->form()->openTag($formTiposUsuarios) ?>
     <div class="panel-body">
         <div class="form-group">
             <label for="inputNomeTipoUsuario" class="col-lg-2 col-md-2 control-label">Tipo de Usuario*:</label>
             <div class="col-lg-10 col-md-10">
                 <?php
                 // renderiza html input
-                echo $this->formInput($formTipoUsuarios->get('nome_tipo_usuario'));
+                echo $this->formInput($formTiposUsuarios->get('nome_tipo_usuario'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()
                     ->setMessageOpenFormat('<small class="text-danger">')
                     ->setMessageSeparatorString('</small><br/><small class="text-danger">')
                     ->setMessageCloseString('</small>')
-                    ->render($formTipoUsuarios->get('nome_tipo_usuario'));
+                    ->render($formTiposUsuarios->get('nome_tipo_usuario'));
                 ?>
             </div>
         </div>
@@ -54,9 +54,9 @@
     <div class="panel-footer">
         <?php
         // renderiza html input hidden para id
-        echo $this->formHidden($formTipoUsuarios->get('id_tipo_usuario'));
+        echo $this->formHidden($formTiposUsuarios->get('id_tipo_usuario'));
         // renderiza html input hidden csrf
-        //echo $this->formElement($formTipoUsuarios->get('security'));
+        //echo $this->formElement($formTiposUsuarios->get('security'));
         ?>
 
         <button type="submit" class="btn btn-primary">Salvar Dados</button>

@@ -1,0 +1,90 @@
+<?php $tipo=0;?>
+<div class='col-lg-13 col-md-13 affix-sidebar'>
+    <div class='col-lg-3 col-md-3 affix-sidebar'>
+        <div class='sidebar-nav'>
+            <div class='navbar navbar-default' role='navigation'>
+                <div id='MainMenu'>
+                    <a href='/alunos' class='list-group-item list-group-item-success' data-parent='#MainMenu'><span class='glyphicon glyphicon-edit'></span> Home</a>
+                    <?php
+                    if($tipo==0){
+                        echo "
+                        <a href='#listar' class='list-group-item list-group-item-success' data-toggle='collapse' data-parent='#MainMenu'><span class='glyphicon glyphicon-list'></span> Listar</a>
+                            <div class='collapse' id='listar'>
+                                <ul type='none'>
+                                    <li><a href='/alunos/main'><span class='glyphicon glyphicon-folder-open'></span> Aluno</a></li>
+                                    <li><a href='/cargos/main'><span class='glyphicon glyphicon-folder-open'></span> Cargo Funcionario</a></li>
+                                    <li><a href='/cursos/main'><span class='glyphicon glyphicon-folder-open'></span> Curso</a></li>
+                                    <li><a href='/dadospessoais/main'><span class='glyphicon glyphicon-folder-open'></span> Dados Pessoais</a></li>
+                                    <li><a href='/funcionarios/main'><span class='glyphicon glyphicon-folder-open'></span> Funcionario</a></li>
+                                    <li><a href='/gerenciadores/main'><span class='glyphicon glyphicon-folder-open'></span> Gerenciador</a></li>
+                                    <li><a href='/materias/main'><span class='glyphicon glyphicon-folder-open'></span> Materia</a></li>
+                                    <li><a href='/series/main'><span class='glyphicon glyphicon-folder-open'></span> Serie</a></li>
+                                    <li><a href='/usuarios/main'><span class='glyphicon glyphicon-folder-open'></span> Usuario</a></li>
+                                </ul>
+                            </div>
+                        ";
+                    }
+                    ?>
+
+                    <a href='#editarperfil' class='list-group-item list-group-item-success' data-toggle='collapse' data-parent='#MainMenu'><span class='glyphicon glyphicon-edit'></span> Editar Perfil</a>
+                    <a href='#badges' class='list-group-item list-group-item-success' data-toggle='collapse' data-parent='#MainMenu'><span class='glyphicon glyphicon-calendar'></span> WithBadges <span class='badge pull-right'>42</span></a>
+                    <a href='/' class='list-group-item list-group-item-success' data-parent='#MainMenu'><span class='glyphicon glyphicon-log-out'></span> Logout</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='col-lg-9 col-md-9 affix-sidebar'>
+    <div class='panel panel-primary'>
+        <div class='panel-heading'>
+            <div class='panel-title'>
+                Detalhes Aluno ID <?php echo $this->filter_aluno($alunos)->idAluno(); ?>
+            </div>
+        </div>
+        <div class='panel-body'>
+            <dl class='dl-horizontal'>
+                <dt>Nome:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->nomeAluno(); ?></dd>
+                <dt>Matricula:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->matriculaAluno(); ?></dd>
+                <dt>Curso:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->cursoAluno(); ?></dd>
+                <dt>Serie:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->serieAluno(); ?></dd>
+                <dt>Matéria:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->materiaAluno(); ?></dd>
+                <dt>Professor:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->professorAluno(); ?></dd>
+                <dt>Prova 1:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->prova1Aluno(); ?></dd>
+                <dt>Prova 2:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->prova2Aluno(); ?></dd>
+                <dt>Prova 3:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->prova3Aluno(); ?></dd>
+                <dt>Prova 4:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->prova4Aluno(); ?></dd>
+                <dt>Trabalho 1:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->trabalho1Aluno(); ?></dd>
+                <dt>Trabalho 2:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->trabalho2Aluno(); ?></dd>
+                <dt>Trabalho 3:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->trabalho3Aluno(); ?></dd>
+                <dt>Trabalho 4:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->trabalho4Aluno(); ?></dd>
+                <dt>Total Notas:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->TotalNotasAluno(); ?></dd>
+                <dt>Faltas:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->FaltasAluno(); ?></dd>
+                <dt>Situação:</dt>
+                <dd><?php echo $this->filter_aluno($alunos)->SituacaoAluno(); ?></dd>
+            </dl>
+        </div>
+        <div class='panel-footer'>
+            <a href='<?php echo $this->url('alunos', array('action' => 'editar', 'id' => $this->filter_aluno($alunos)->idAluno())); ?>' class='btn btn-warning btn-sm'>Editar Alunos</a>
+            <a href="<?php echo $this->url('alunos', ['action' => 'main']); ?>" class="btn btn-default">Voltar</a>
+        </div>
+    </div>
+</div>
+

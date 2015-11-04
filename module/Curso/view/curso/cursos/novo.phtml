@@ -1,0 +1,140 @@
+<?php $tipo=0;?>
+<div class='col-lg-13 col-md-13 affix-sidebar'>
+    <div class='col-lg-3 col-md-3 affix-sidebar'>
+        <div class='sidebar-nav'>
+            <div class='navbar navbar-default' role='navigation'>
+                <div id='MainMenu'>
+                    <a href='/cursos' class='list-group-item list-group-item-success' data-parent='#MainMenu'><span class='glyphicon glyphicon-edit'></span> Home</a>
+                    <?php
+                    if($tipo==0){
+                        echo "
+                        <a href='#listar' class='list-group-item list-group-item-success' data-toggle='collapse' data-parent='#MainMenu'><span class='glyphicon glyphicon-list'></span> Listar</a>
+                            <div class='collapse' id='listar'>
+                                <ul type='none'>
+                                    <li><a href='/alunos/main'><span class='glyphicon glyphicon-folder-open'></span> Aluno</a></li>
+                                    <li><a href='/cargos/main'><span class='glyphicon glyphicon-folder-open'></span> Cargo Funcionario</a></li>
+                                    <li><a href='/cursos/main'><span class='glyphicon glyphicon-folder-open'></span> Curso</a></li>
+                                    <li><a href='/dadospessoais/main'><span class='glyphicon glyphicon-folder-open'></span> Dados Pessoais</a></li>
+                                    <li><a href='/funcionarios/main'><span class='glyphicon glyphicon-folder-open'></span> Funcionario</a></li>
+                                    <li><a href='/gerenciadores/main'><span class='glyphicon glyphicon-folder-open'></span> Gerenciador</a></li>
+                                    <li><a href='/materias/main'><span class='glyphicon glyphicon-folder-open'></span> Materia</a></li>
+                                    <li><a href='/series/main'><span class='glyphicon glyphicon-folder-open'></span> Serie</a></li>
+                                    <li><a href='/usuarios/main'><span class='glyphicon glyphicon-folder-open'></span> Usuario</a></li>
+                                </ul>
+                            </div>
+                        ";
+                    }
+                    ?>
+
+                    <a href='#editarperfil' class='list-group-item list-group-item-success' data-toggle='collapse' data-parent='#MainMenu'><span class='glyphicon glyphicon-edit'></span> Editar Perfil</a>
+                    <a href='#badges' class='list-group-item list-group-item-success' data-toggle='collapse' data-parent='#MainMenu'><span class='glyphicon glyphicon-calendar'></span> WithBadges <span class='badge pull-right'>42</span></a>
+                    <a href='/' class='list-group-item list-group-item-success' data-parent='#MainMenu'><span class='glyphicon glyphicon-log-out'></span> Logout</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='col-lg-9 col-md-9 affix-sidebar'>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                Novo Curso
+            </div>
+        </div>
+        <?php
+        // objeto form contato
+        $formCursos = $this->formCursos;
+        // preparar elementos do formulário
+        $formCursos->prepare();
+        // configurar url formulário
+        $formCursos->setAttribute('action', $this->url('cursos', array('action' => 'adicionar')));
+        ?>
+
+        <?php // renderiza html <form> com atributos configurados no objeto ?>
+        <?php echo $this->form()->openTag($formCursos) ?>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="inputNomeCurso" class="col-lg-2 col-md-2 control-label">Nome Do Curso*:</label>
+                <div class="col-lg-10 col-md-10">
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($formCursos->get('nome_curso'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat('<small class="text-danger">')
+                        ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                        ->setMessageCloseString('</small>')
+                        ->render($formCursos->get('nome_curso'));
+                    ?>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputTurno" class="col-lg-2 col-md-2 control-label">Turno*:</label>
+                <div class="col-lg-2 col-md-2">
+                    <?php
+                    // renderiza html input
+                    echo $this->formRadio($formCursos->get('turno'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat('<small class="text-danger">')
+                        ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                        ->setMessageCloseString('</small>')
+                        ->render($formCursos->get('turno'));
+                    ?>
+                </div>
+
+                <label for="inputTipo" class="col-lg-2 col-md-2 control-label">Tipo de Curso*:</label>
+                <div class="col-lg-2 col-md-2">
+                    <?php
+                    // renderiza html input
+                    echo $this->formRadio($formCursos->get('tipo'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat('<small class="text-danger">')
+                        ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                        ->setMessageCloseString('</small>')
+                        ->render($formCursos->get('tipo'));
+                    ?>
+                </div>
+            </div>
+
+
+            <!--<div class="form-group">
+            <label for="inputCaptcha" class="col-lg-2 col-md-2 control-label">Verificação*:</label>
+            <div class="col-lg-9  col-md-9" id="captcha">
+            <?php
+            // renderiza captcha
+            /*echo $this->formCaptcha($formCursos->get('captcha'));
+
+            // renderiza elemento de erro
+            echo $this->formElementErrors()
+                ->setMessageOpenFormat('<small class="text-danger">')
+                ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                ->setMessageCloseString('</small>')
+                ->render($formCursos->get('captcha'));*/
+            ?>
+            </div>
+        </div>-->
+        </div>
+        <div class="panel-footer">
+            <?php
+            // renderiza html input hidden para id
+            echo $this->formHidden($formCursos->get('id_curso'));
+            // renderiza html input hidden csrf
+            //echo $this->formElement($formCursos->get('security'));
+            ?>
+
+            <button type="submit" class="btn btn-primary">Salvar Dados</button>
+            <a href="<?php echo $this->url('cursos', ['action' => 'main']); ?>" class="btn btn-default">Voltar</a>
+        </div>
+
+        <?php // renderiza html </form> ?>
+        <?php echo $this->form()->closeTag() ?>
+    </div>
+</div>

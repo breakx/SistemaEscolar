@@ -420,13 +420,18 @@ class MainForm extends Form
                 ]);
 
                 $this->add([
-                    'type' => 'Date', # ou 'type' => 'Text'
+                    'type' => 'Select', # ou 'type' => 'Text'
                     'name' => 'ano',
                     'attributes' => [
                         'class'         => 'form-control',
                         'id'            => 'inputAno',
                         'placeholder'   => 'Digite o ano.',
                     ],
+                    'options' => [
+                        'label' => 'Select a month and a year',
+                        'min_year' => 1986,
+                        'max_year' => 2020
+                    ]
                 ]);
 
                 // elemento do tipo text
@@ -477,6 +482,24 @@ class MainForm extends Form
                         'class'         => 'form-control',
                         'id'            => 'inputRepetirSenha',
                         'placeholder'   => 'Repita a senha.',
+                    ],
+                ]);
+                break;
+            case 'tipos_usuarios':
+                // elemento do tipo hidden
+                $this->add([
+                    'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'
+                    'name' => 'id_tipo_usuario',
+                ]);
+
+                // elemento do tipo text
+                $this->add([
+                    'type' => 'Text', # ou 'type' => 'ZendFormElementText'
+                    'name' => 'nome_tipo_usuario',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'inputNomeTipoUsuario',
+                        'placeholder'   => 'Digite o nome do tipo de usuário.',
                     ],
                 ]);
                 break;
@@ -583,11 +606,12 @@ class MainForm extends Form
                         'class'         => 'form-control',
                         'id'            => 'inputMatriculaAluno',
                         'placeholder'   => 'Digite a matricula do aluno.',
+                        'disabled' => false,
                     ],
                 ]);
 
                 // elemento do tipo text
-                $this->add([
+                /*$this->add([
                     'type' => 'Text', # ou 'type' => 'ZendFormElementText'
                     'name' => 'curso_aluno',
                     'attributes' => [
@@ -595,10 +619,28 @@ class MainForm extends Form
                         'id'            => 'inputCursoAluno',
                         'placeholder'   => 'Digite a curso do aluno.',
                     ],
+                ]);*/
+
+                // elemento do tipo select
+                $this->add([
+                    'type' => 'Select',
+                    'name' => 'curso_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'selectCursoAluno',
+                    ],
+                    'options' => [
+                        'label' => 'Selecione o Curso',
+                        'empty_option' => 'Selecione uma opção',
+                        'value_options' => [
+                            '1' => 'Curso A',
+                            '2' => 'Curso B',
+                        ],
+                    ]
                 ]);
 
                 // elemento do tipo text
-                $this->add([
+                /*$this->add([
                     'type' => 'Text', # ou 'type' => 'ZendFormElementText'
                     'name' => 'serie_aluno',
                     'attributes' => [
@@ -606,10 +648,28 @@ class MainForm extends Form
                         'id'            => 'inputSerieAluno',
                         'placeholder'   => 'Digite a serie do aluno.',
                     ],
+                ]);*/
+
+                // elemento do tipo select
+                $this->add([
+                    'type' => 'Select',
+                    'name' => 'serie_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'selectSerieAluno',
+                    ],
+                    'options' => [
+                        'label' => 'Selecione o Serie',
+                        'empty_option' => 'Selecione uma opção',
+                        'value_options' => [
+                            '1' => 'Serie A',
+                            '2' => 'Serie B',
+                        ],
+                    ]
                 ]);
 
                 // elemento do tipo text
-                $this->add([
+                /*$this->add([
                     'type' => 'Text', # ou 'type' => 'ZendFormElementText'
                     'name' => 'materia_aluno',
                     'attributes' => [
@@ -617,10 +677,28 @@ class MainForm extends Form
                         'id'            => 'inputMateriaAluno',
                         'placeholder'   => 'Digite a materia do aluno.',
                     ],
+                ]);*/
+
+                // elemento do tipo select
+                $this->add([
+                    'type' => 'Select',
+                    'name' => 'materia_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'selectMateriaAluno',
+                    ],
+                    'options' => [
+                        'label' => 'Selecione o Materia',
+                        'empty_option' => 'Selecione uma opção',
+                        'value_options' => [
+                            '1' => 'Materia A',
+                            '2' => 'Materia B',
+                        ],
+                    ]
                 ]);
 
                 // elemento do tipo text
-                $this->add([
+                /*$this->add([
                     'type' => 'Text', # ou 'type' => 'ZendFormElementText'
                     'name' => 'professor_aluno',
                     'attributes' => [
@@ -628,6 +706,24 @@ class MainForm extends Form
                         'id'            => 'inputProfessorAluno',
                         'placeholder'   => 'Digite a professor do aluno.',
                     ],
+                ]);*/
+
+                // elemento do tipo select
+                $this->add([
+                    'type' => 'Select',
+                    'name' => 'professor_aluno',
+                    'attributes' => [
+                        'class'         => 'form-control',
+                        'id'            => 'selectProfessorAluno',
+                    ],
+                    'options' => [
+                        'label' => 'Selecione o Professor',
+                        'empty_option' => 'Selecione uma opção',
+                        'value_options' => [
+                            '1' => 'Professor A',
+                            '2' => 'Professor B',
+                        ],
+                    ]
                 ]);
                 break;
         }

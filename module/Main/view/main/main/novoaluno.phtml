@@ -17,8 +17,8 @@
     <?php echo $this->form()->openTag($formAlunos) ?>
     <div class="panel-body">
         <div class="form-group">
-            <label for="inputNomeAluno" class="col-lg-2 col-md-2 control-label">Nome Da Matéria*:</label>
-            <div class="col-lg-10 col-md-10">
+            <label for="inputNomeAluno" class="col-lg-2 col-md-2 control-label">Nome Do Aluno*:</label>
+            <div class="col-lg-6 col-md-6">
                 <?php
                 // renderiza html input
                 echo $this->formInput($formAlunos->get('nome_aluno'));
@@ -32,8 +32,8 @@
                 ?>
             </div>
 
-            <label for="inputMatriculaAluno" class="col-lg-2 col-md-2 control-label">Matrícula do Aluno*:</label>
-            <div class="col-lg-10 col-md-10">
+            <label for="inputMatriculaAluno" class="col-lg-1 col-md-1 control-label">Matrícula*:</label>
+            <div class="col-lg-3 col-md-3">
                 <?php
                 // renderiza html input
                 echo $this->formInput($formAlunos->get('matricula_aluno'));
@@ -49,11 +49,11 @@
         </div>
 
         <div class="form-group">
-            <label for="inputCursoAluno" class="col-lg-2 col-md-2 control-label">Nome do Curso*:</label>
+            <label for="inputCursoAluno" class="col-lg-2 col-md-2 control-label">Curso*:</label>
             <div class="col-lg-4 col-md-4">
                 <?php
                 // renderiza html input
-                echo $this->formRadio($formAlunos->get('curso_aluno'));
+                echo $this->formSelect($formAlunos->get('curso_aluno'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()
@@ -64,11 +64,11 @@
                 ?>
             </div>
 
-            <label for="inputSerieAluno" class="col-lg-2 col-md-2 control-label">Nome da Série*:</label>
+            <label for="inputSerieAluno" class="col-lg-2 col-md-2 control-label">Série*:</label>
             <div class="col-lg-4 col-md-4">
                 <?php
                 // renderiza html input
-                echo $this->formRadio($formAlunos->get('serie_aluno'));
+                echo $this->formSelect($formAlunos->get('serie_aluno'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()
@@ -78,12 +78,14 @@
                     ->render($formAlunos->get('serie_aluno'));
                 ?>
             </div>
+        </div>
 
-            <label for="inputMateriaAluno" class="col-lg-2 col-md-2 control-label">Nome da Matéria*:</label>
+        <div class="form-group">
+            <label for="inputMateriaAluno" class="col-lg-2 col-md-2 control-label">Matéria*:</label>
             <div class="col-lg-4 col-md-4">
                 <?php
                 // renderiza html input
-                echo $this->formRadio($formAlunos->get('materia_aluno'));
+                echo $this->formSelect($formAlunos->get('materia_aluno'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()
@@ -94,11 +96,11 @@
                 ?>
             </div>
 
-            <label for="inputProfessorAluno" class="col-lg-2 col-md-2 control-label">Nome do Professor*:</label>
+            <label for="inputProfessorAluno" class="col-lg-2 col-md-2 control-label">Professor*:</label>
             <div class="col-lg-4 col-md-4">
                 <?php
                 // renderiza html input
-                echo $this->formRadio($formAlunos->get('professor_aluno'));
+                echo $this->formSelect($formAlunos->get('professor_aluno'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()
@@ -131,7 +133,7 @@
     <div class="panel-footer">
         <?php
         // renderiza html input hidden para id
-        echo $this->formHidden($formAlunos->get('id_materia'));
+        echo $this->formHidden($formAlunos->get('id_aluno'));
         // renderiza html input hidden csrf
         //echo $this->formElement($formAlunos->get('security'));
         ?>

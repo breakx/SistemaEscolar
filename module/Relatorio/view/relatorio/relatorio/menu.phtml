@@ -1,0 +1,83 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: CristianoGD
+ * Date: 11/10/2015
+ * Time: 13:43
+ */
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: LK
+ * Date: 05/10/2015
+ * Time: 19:33
+ */
+
+$title = 'Relatorio';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            Relatorio
+        </div>
+    </div>
+    <?php
+    // objeto form contato
+    $formRelatorio = $this->formRelatorio;
+    // preparar elementos do formulário
+    $formRelatorio->prepare();
+    // configurar url formulário
+    $formRelatorio->setAttribute('action', $this->url('relatorios', array('action' => 'relatorio')));
+    ?>
+
+    <?php // renderiza html <form> com atributos configurados no objeto ?>
+    <?php echo $this->form()->openTag($formRelatorio) ?>
+    <div class="panel-body">
+
+        <div class="form-group">
+            <label for="tipoUsuario" class="col-lg-3 col-md-3 control-label">Tipo Usuário:</label>
+            <div class="col-lg-9  col-md-9" id="tipoUsuario">
+                <?php
+                // renderiza html input
+                echo $this->formSelect($formRelatorio->get('tipo_usuario'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formRelatorio->get('tipo_usuario'));
+                ?>
+            </div>
+
+            <label for="usuarioComum" class="col-lg-3 col-md-3 control-label">Usuário:</label>
+            <div class="col-lg-9  col-md-9" id="usuarioComum">
+                <?php
+                // renderiza html input
+                echo $this->formSelect($formRelatorio->get('usuario'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formRelatorio->get('usuario'));
+                ?>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <?php
+        // renderiza html input hidden para id
+        echo $this->formHidden($formRelatorio->get('id'));
+        ?>
+        <button type="submit" class="btn btn-primary">Mostrar Relatorio</button>
+        <a href="<?php echo $this->url('relatorios'); ?>" class="btn btn-default">Voltar</a>
+    </div>
+
+    <?php // renderiza html </form> ?>
+    <?php echo $this->form()->closeTag() ?>
+</div>

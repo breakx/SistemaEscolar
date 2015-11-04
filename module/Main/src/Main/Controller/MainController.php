@@ -458,13 +458,13 @@ class MainController extends AbstractActionController
      */
     public function novotipousuarioAction()
     {
-        $mainTable='tipo_usuario';
-        return ['formTipoUsuarios' => new MainForm($mainTable)];
+        $mainTable='tipos_usuarios';
+        return ['formTiposUsuarios' => new MainForm($mainTable)];
     }
 
     public function adicionartipousuarioAction()
     {
-        $mainTable='tipo_usuario';
+        $mainTable='tipos_usuarios';
         // obtém a requisição
         $request = $this->getRequest();
 
@@ -495,7 +495,7 @@ class MainController extends AbstractActionController
                 // renderiza para action novo com o objeto form populado,
                 // com isso os erros serão tratados pelo helpers view
                 return (new ViewModel())
-                    ->setVariable('formTipoUsuarios', $form)
+                    ->setVariable('formTiposUsuarios', $form)
                     ->setTemplate('main/main/novotipousuario');
             }
         }
@@ -525,14 +525,14 @@ class MainController extends AbstractActionController
                 case 'usuarios':
                     $this->mainTable = $this->getServiceLocator()->get('ModelUsuarios',$tabela);
                     break;
-                case 'tipo_usuarios':
-                    $this->mainTable = $this->getServiceLocator()->get('ModelTipoUsuarios',$tabela);
+                case 'tipos_usuarios':
+                    $this->mainTable = $this->getServiceLocator()->get('ModelTiposUsuarios',$tabela);
                     break;
                 case 'funcionarios':
                     $this->mainTable = $this->getServiceLocator()->get('ModelFuncionarios',$tabela);
                     break;
                 case 'cargos_funcionarios':
-                    $this->mainTable = $this->getServiceLocator()->get('ModelCargoFuncionarios',$tabela);
+                    $this->mainTable = $this->getServiceLocator()->get('ModelCargosFuncionarios',$tabela);
                     break;
                 case 'alunos':
                     $this->mainTable = $this->getServiceLocator()->get('ModelAlunos',$tabela);

@@ -108,8 +108,8 @@ class Module
 
                     return new TableGateway('cargos_funcionarios', $adapter, NULL, $resultSetPrototype);
                 },
-                'ModelCargoFuncionarios' => function ($sm) {
-                    return new MainTable($sm->get('CargoFuncionariosTableGateway'));
+                'ModelCargosFuncionarios' => function ($sm) {
+                    return new MainTable($sm->get('CargosFuncionariosTableGateway'));
                 },
                 'UsuariosTableGateway' => function ($sm) {
                     $adapter = $sm->get('AdapterDb');
@@ -122,16 +122,16 @@ class Module
                 'ModelUsuarios' => function ($sm) {
                     return new MainTable($sm->get('UsuariosTableGateway'));
                 },
-                'TipoUsuariosTableGateway' => function ($sm) {
+                'TiposUsuariosTableGateway' => function ($sm) {
                     $adapter = $sm->get('AdapterDb');
 
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Main());
 
-                    return new TableGateway('tipo_usuarios', $adapter, NULL, $resultSetPrototype);
+                    return new TableGateway('tipos_usuarios', $adapter, NULL, $resultSetPrototype);
                 },
-                'ModelTipoUsuarios' => function ($sm) {
-                    return new MainTable($sm->get('TipoUsuariosTableGateway'));
+                'ModelTiposUsuarios' => function ($sm) {
+                    return new MainTable($sm->get('TiposUsuariosTableGateway'));
                 },
             ]
         ];

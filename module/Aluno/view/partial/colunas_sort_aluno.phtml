@@ -1,0 +1,47 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: CristianoGD
+ * Date: 30/09/2015
+ * Time: 13:32
+ */
+
+$estruturaColuna = function($label, $coluna_nome) {
+    $html = '';
+    $html .= "<a href='{$this->url('alunos', ['action' => 'main'], ['query' => ['pagina' => $this->pagina_atual, 'coluna_nome' => $coluna_nome, 'coluna_sort' => ($this->coluna_nome != $coluna_nome ? 'ASC' : ($this->coluna_sort == 'DESC' ? 'ASC' : 'DESC')), 'itens_pagina' => $this->itens_pagina, 'search' => $this->search]])}'>";
+
+    if ($this->coluna_nome == $coluna_nome) {
+        $icon = $this->coluna_sort == 'ASC' ? '' : '-alt';
+        $html .= "<span class='glyphicon glyphicon-sort-by-attributes{$icon}'></span> ";
+    }
+
+    $html .= $label;
+
+    return $html;
+};
+
+?>
+<tr>
+    <th>
+        <?php echo $estruturaColuna('ID', 'id_aluno'); ?>
+    </th>
+    <th>
+        <?php echo $estruturaColuna('Nome', 'nome_aluno'); ?>
+    </th>
+    <th>
+        <?php echo $estruturaColuna('Matricula', 'matricula_aluno'); ?>
+    </th>
+    <th>
+        <?php echo $estruturaColuna('Curso', 'curso_aluno'); ?>
+    </th>
+    <th>
+        <?php echo $estruturaColuna('Serie', 'serie_aluno'); ?>
+    </th>
+    <th>
+        <?php echo $estruturaColuna('Materia', 'materia_aluno'); ?>
+    </th>
+    <th>
+        <?php echo $estruturaColuna('Professor', 'professor_aluno'); ?>
+    </th>
+    <th>Ação</th>
+</tr>

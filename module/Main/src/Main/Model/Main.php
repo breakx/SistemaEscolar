@@ -686,9 +686,9 @@ class Main
                     $inputFilter->add(array(
                         'name'     => 'sexo',
                         'required' => true,
-                        'filters'  => array(
+                        /*'filters'  => array(
                             array('name' => 'Int'),
-                        ),
+                        ),*/
                         'validators' => array(
                             array(
                                 'name'    => 'NotEmpty',
@@ -704,9 +704,9 @@ class Main
                     $inputFilter->add(array(
                         'name'     => 'situacao',
                         'required' => true,
-                        'filters'  => array(
+                        /*'filters'  => array(
                             array('name' => 'Int'),
-                        ),
+                        ),*/
                         'validators' => array(
                             array(
                                 'name'    => 'NotEmpty',
@@ -765,9 +765,9 @@ class Main
                     $inputFilter->add(array(
                         'name'     => 'turno',
                         'required' => true,
-                        'filters'  => array(
+                        /*'filters'  => array(
                             array('name' => 'Int'),
-                        ),
+                        ),*/
                         'validators' => array(
                             array(
                                 'name'    => 'NotEmpty',
@@ -783,9 +783,9 @@ class Main
                     $inputFilter->add(array(
                         'name'     => 'tipo',
                         'required' => true,
-                        'filters'  => array(
+                        /*'filters'  => array(
                             array('name' => 'Int'),
-                        ),
+                        ),*/
                         'validators' => array(
                             array(
                                 'name'    => 'NotEmpty',
@@ -1084,7 +1084,7 @@ class Main
                         ),
                     ));
                     break;
-                case 'tipo_usuarios':
+                case 'tipos_usuarios':
                     //input filter para campo id
                     $inputFilter->add(array(
                         'name'=>'id_tipo_usuarios',

@@ -1,0 +1,90 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: LK
+ * Date: 05/10/2015
+ * Time: 19:33
+ */
+
+$title = 'Relatorio';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            Relatorio
+        </div>
+    </div>
+    <?php
+    // objeto form contato
+    $formRelatorio = $this->formRelatorio;
+    // preparar elementos do formulário
+    $formRelatorio->prepare();
+    // configurar url formulário
+    $formRelatorio->setAttribute('action', $this->url('relatorios', array('action' => 'relatorio')));
+    ?>
+
+    <?php // renderiza html <form> com atributos configurados no objeto ?>
+    <?php echo $this->form()->openTag($formRelatorio) ?>
+    <div class="panel-body">
+
+        <div class="form-group">
+            <label for="selCountry" class="col-lg-3 col-md-3 control-label">Select Country:</label>
+            <div class="col-lg-9  col-md-9" id="selCountry">
+                <?php
+                // renderiza html input
+                echo $this->formSelect($formRelatorio->get('select_country'));//colocar como name no form.php
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formRelatorio->get('select_country'));
+                ?>
+            </div>
+
+            <label for="selState" class="col-lg-3 col-md-3 control-label">Select State:</label>
+            <div class="col-lg-9  col-md-9" id="selState">
+                <?php
+                // renderiza html input
+                echo $this->formSelect($formRelatorio->get('select_state'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formRelatorio->get('select_state'));
+                ?>
+            </div>
+
+            <label for="selCity" class="col-lg-3 col-md-3 control-label">Select City:</label>
+            <div class="col-lg-9  col-md-9" id="selCity">
+                <?php
+                // renderiza html input
+                echo $this->formSelect($formRelatorio->get('select_city'));
+
+                // renderiza elemento de erro
+                echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<small class="text-danger">')
+                    ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+                    ->setMessageCloseString('</small>')
+                    ->render($formRelatorio->get('select_city'));
+                ?>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <?php
+        // renderiza html input hidden para id
+        echo $this->formHidden($formRelatorio->get('id'));
+        ?>
+        <button type="submit" class="btn btn-primary">Mostrar Relatorio</button>
+        <a href="<?php echo $this->url('relatorios'); ?>" class="btn btn-default">Voltar</a>
+    </div>
+
+    <?php // renderiza html </form> ?>
+    <?php echo $this->form()->closeTag() ?>
+</div>

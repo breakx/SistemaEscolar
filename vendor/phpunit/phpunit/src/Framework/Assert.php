@@ -11,11 +11,7 @@
 /**
  * A set of assert methods.
  *
- * @author     Sebastian Bergmann <sebastian@phpunit.de>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @link       http://www.phpunit.de/
- * @since      Class available since Release 2.0.0
+ * @since Class available since Release 2.0.0
  */
 abstract class PHPUnit_Framework_Assert
 {
@@ -135,6 +131,13 @@ abstract class PHPUnit_Framework_Assert
                 $checkForNonObjectIdentity
             );
         } elseif (is_string($haystack)) {
+            if (!is_string($needle)) {
+                throw PHPUnit_Util_InvalidArgumentHelper::factory(
+                    1,
+                    'string'
+                );
+            }
+
             $constraint = new PHPUnit_Framework_Constraint_StringContains(
                 $needle,
                 $ignoreCase
@@ -197,6 +200,13 @@ abstract class PHPUnit_Framework_Assert
                 )
             );
         } elseif (is_string($haystack)) {
+            if (!is_string($needle)) {
+                throw PHPUnit_Util_InvalidArgumentHelper::factory(
+                    1,
+                    'string'
+                );
+            }
+
             $constraint = new PHPUnit_Framework_Constraint_Not(
                 new PHPUnit_Framework_Constraint_StringContains(
                     $needle,
@@ -1688,16 +1698,8 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertXmlFileEqualsXmlFile($expectedFile, $actualFile, $message = '')
     {
-        self::assertFileExists($expectedFile);
-        self::assertFileExists($actualFile);
-
-        $expected                     = new DOMDocument;
-        $expected->preserveWhiteSpace = false;
-        $expected->load($expectedFile);
-
-        $actual                     = new DOMDocument;
-        $actual->preserveWhiteSpace = false;
-        $actual->load($actualFile);
+        $expected = PHPUnit_Util_XML::loadFile($expectedFile);
+        $actual   = PHPUnit_Util_XML::loadFile($actualFile);
 
         self::assertEquals($expected, $actual, $message);
     }
@@ -1712,16 +1714,8 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertXmlFileNotEqualsXmlFile($expectedFile, $actualFile, $message = '')
     {
-        self::assertFileExists($expectedFile);
-        self::assertFileExists($actualFile);
-
-        $expected                     = new DOMDocument;
-        $expected->preserveWhiteSpace = false;
-        $expected->load($expectedFile);
-
-        $actual                     = new DOMDocument;
-        $actual->preserveWhiteSpace = false;
-        $actual->load($actualFile);
+        $expected = PHPUnit_Util_XML::loadFile($expectedFile);
+        $actual   = PHPUnit_Util_XML::loadFile($actualFile);
 
         self::assertNotEquals($expected, $actual, $message);
     }
@@ -1736,15 +1730,8 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertXmlStringEqualsXmlFile($expectedFile, $actualXml, $message = '')
     {
-        self::assertFileExists($expectedFile);
-
-        $expected                     = new DOMDocument;
-        $expected->preserveWhiteSpace = false;
-        $expected->load($expectedFile);
-
-        $actual                     = new DOMDocument;
-        $actual->preserveWhiteSpace = false;
-        $actual->loadXML($actualXml);
+        $expected = PHPUnit_Util_XML::loadFile($expectedFile);
+        $actual   = PHPUnit_Util_XML::load($actualXml);
 
         self::assertEquals($expected, $actual, $message);
     }
@@ -1759,15 +1746,8 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertXmlStringNotEqualsXmlFile($expectedFile, $actualXml, $message = '')
     {
-        self::assertFileExists($expectedFile);
-
-        $expected                     = new DOMDocument;
-        $expected->preserveWhiteSpace = false;
-        $expected->load($expectedFile);
-
-        $actual                     = new DOMDocument;
-        $actual->preserveWhiteSpace = false;
-        $actual->loadXML($actualXml);
+        $expected = PHPUnit_Util_XML::loadFile($expectedFile);
+        $actual   = PHPUnit_Util_XML::load($actualXml);
 
         self::assertNotEquals($expected, $actual, $message);
     }
@@ -1782,13 +1762,8 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertXmlStringEqualsXmlString($expectedXml, $actualXml, $message = '')
     {
-        $expected                     = new DOMDocument;
-        $expected->preserveWhiteSpace = false;
-        $expected->loadXML($expectedXml);
-
-        $actual                     = new DOMDocument;
-        $actual->preserveWhiteSpace = false;
-        $actual->loadXML($actualXml);
+        $expected = PHPUnit_Util_XML::load($expectedXml);
+        $actual   = PHPUnit_Util_XML::load($actualXml);
 
         self::assertEquals($expected, $actual, $message);
     }
@@ -1803,13 +1778,8 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertXmlStringNotEqualsXmlString($expectedXml, $actualXml, $message = '')
     {
-        $expected                     = new DOMDocument;
-        $expected->preserveWhiteSpace = false;
-        $expected->loadXML($expectedXml);
-
-        $actual                     = new DOMDocument;
-        $actual->preserveWhiteSpace = false;
-        $actual->loadXML($actualXml);
+        $expected = PHPUnit_Util_XML::load($expectedXml);
+        $actual   = PHPUnit_Util_XML::load($actualXml);
 
         self::assertNotEquals($expected, $actual, $message);
     }
@@ -1821,7 +1791,6 @@ abstract class PHPUnit_Framework_Assert
      * @param DOMElement $actualElement
      * @param bool       $checkAttributes
      * @param string     $message
-     * @author Mattis Stordalen Flister <mattis@xait.no>
      * @since  Method available since Release 3.3.0
      */
     public static function assertEqualXMLStructure(DOMElement $expectedElement, DOMElement $actualElement, $checkAttributes = false, $message = '')
@@ -1912,9 +1881,8 @@ abstract class PHPUnit_Framework_Assert
      * @param string         $message
      * @param bool           $isHtml
      * @since  Method available since Release 3.3.0
-     * @author Mike Naberezny <mike@maintainable.com>
-     * @author Derek DeVries <derek@maintainable.com>
      * @deprecated
+     * @codeCoverageIgnore
      */
     public static function assertSelectCount($selector, $count, $actual, $message = '', $isHtml = true)
     {
@@ -1941,9 +1909,8 @@ abstract class PHPUnit_Framework_Assert
      * @param string         $message
      * @param bool           $isHtml
      * @since  Method available since Release 3.3.0
-     * @author Mike Naberezny <mike@maintainable.com>
-     * @author Derek DeVries <derek@maintainable.com>
      * @deprecated
+     * @codeCoverageIgnore
      */
     public static function assertSelectRegExp($selector, $pattern, $count, $actual, $message = '', $isHtml = true)
     {
@@ -1970,9 +1937,8 @@ abstract class PHPUnit_Framework_Assert
      * @param string         $message
      * @param bool           $isHtml
      * @since  Method available since Release 3.3.0
-     * @author Mike Naberezny <mike@maintainable.com>
-     * @author Derek DeVries <derek@maintainable.com>
      * @deprecated
+     * @codeCoverageIgnore
      */
     public static function assertSelectEquals($selector, $content, $count, $actual, $message = '', $isHtml = true)
     {
@@ -2158,9 +2124,8 @@ abstract class PHPUnit_Framework_Assert
      * @param string $message
      * @param bool   $isHtml
      * @since  Method available since Release 3.3.0
-     * @author Mike Naberezny <mike@maintainable.com>
-     * @author Derek DeVries <derek@maintainable.com>
      * @deprecated
+     * @codeCoverageIgnore
      */
     public static function assertTag($matcher, $actual, $message = '', $isHtml = true)
     {
@@ -2184,9 +2149,8 @@ abstract class PHPUnit_Framework_Assert
      * @param string $message
      * @param bool   $isHtml
      * @since  Method available since Release 3.3.0
-     * @author Mike Naberezny <mike@maintainable.com>
-     * @author Derek DeVries <derek@maintainable.com>
      * @deprecated
+     * @codeCoverageIgnore
      */
     public static function assertNotTag($matcher, $actual, $message = '', $isHtml = true)
     {

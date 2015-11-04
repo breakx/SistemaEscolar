@@ -1,42 +1,38 @@
-<div class="jumbotron">
-    <h1><?php echo sprintf($this->translate('Bem Vindo ao Sistema Escolar CrGD-Beta-0.01'), '<span class="zf-green">', '</span>') ?></h1>
-    <p><?php echo sprintf($this->translate('O Sistema esta sendo desenvolvido a partir do %sZF2 Skeleton Application%s. A atual versão do Zend Framework é %s.'), '<a href="#pagina_principal">', '</a>', \Zend\Version\Version::VERSION) ?></p>
-</div>
-
 <div class="row">
-
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Sistema de Gerenciamento Escolar') ?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('O Sistema irá permitir o cadastro de novos alunos que ingressam na escola (NOME), gerenciamento de cursos basicos e cursos tecnicos.'), '<a href="#sge">', '</a>') ?></p>
-                <p><a class="btn btn-success pull-right" href="#sge""><?php echo $this->translate('Sistema Escolar') ?> &raquo;</a></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Sistema de Login') ?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('O Sistema ira permitir ao estudante ao logar verificar suas notas e ao funcionario gerenciar dados do sistema.'), '<a href="/login">', '</a>') ?></p>
-                <p><a class="btn btn-success pull-right" href="/login"><?php echo $this->translate('Login') ?> &raquo;</a></p>
+    <div class="col-lg-13 col-md-13 affix-sidebar">
+        <div class="col-lg-4 col-md-4 affix-sidebar">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $this->translate('Sistema de Gerenciamento Escolar') ?></h3>
+                </div>
+                <div class="panel-body">
+                    <p><?php echo sprintf($this->translate('O Sistema irá permitir o cadastro de novos alunos que ingressam na escola (NOME), gerenciamento de cursos basicos e cursos tecnicos.'), '<a href="#sge">', '</a>') ?></p>
+                    <p><a class="btn btn-success pull-right" href="#sge""><?php echo $this->translate('Sistema Escolar') ?> &raquo;</a></p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Relatorios e Logs') ?></h3>
+        <div class="col-lg-4 col-md-4 affix-sidebar">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $this->translate('Sistema de Login') ?></h3>
+                </div>
+                <div class="panel-body">
+                    <p><?php echo sprintf($this->translate('O Sistema ira permitir ao estudante ao logar verificar suas notas e ao funcionario gerenciar dados do sistema.'), '<a href="/login">', '</a>') ?></p>
+                    <p><a class="btn btn-success pull-right" href="/login"><?php echo $this->translate('Login') ?> &raquo;</a></p>
+                </div>
             </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('O Sistema ira gerar relatorios de notas e registrara em log os acessos e alterções nos dados do sistema feitos pelos usuarios.'), '<a href="#relatorios_logs">', '</a>') ?></p>
-                <p><a class="btn btn-success pull-right" href="#relatorios_logs"><?php echo $this->translate('Relatorios') ?> &raquo;</a></p>
+        </div>
+
+        <div class="col-lg-4 col-md-4 affix-sidebar">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $this->translate('Relatorios e Logs') ?></h3>
+                </div>
+                <div class="panel-body">
+                    <p><?php echo sprintf($this->translate('O Sistema ira gerar relatorios de notas e registrara em log os acessos e alterções nos dados do sistema feitos pelos usuarios.'), '<a href="#relatorios_logs">', '</a>') ?></p>
+                    <p><a class="btn btn-success pull-right" href="#relatorios_logs"><?php echo $this->translate('Relatorios') ?> &raquo;</a></p>
+                </div>
             </div>
         </div>
     </div>
